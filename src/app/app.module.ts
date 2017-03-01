@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { SellersService } from './sellers.service';
 import { WaresComponent } from './wares/wares.component';
 import { SellersComponent } from './sellers/sellers.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { SellersComponent } from './sellers/sellers.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    NgbModule.forRoot(),
   ],
   providers: [SellersService],
   bootstrap: [AppComponent]
