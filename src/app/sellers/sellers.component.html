@@ -1,0 +1,17 @@
+<p>
+  sellers should be displayed here!
+</p>
+
+<div *ngIf="sellers">
+  <!--Show Sellers-->
+  <div *ngFor="let seller of sellers">
+    <!-- Show Seller -->
+    <div>
+      <h2>{{seller.name}}</h2>
+      <div class="thumbnail">
+        <img src="{{seller.imagePath}}" alt="Image of the seller"/>
+      </div>
+    </div>
+    
+  </div>
+</div>
