@@ -2,18 +2,18 @@
   sellers should be displayed here!
 </p>
 <div>
-  <div *ngIf="sellers">
+  <div *ngIf="sellers" class="row">
     <!--Show Sellers-->
     <div *ngFor="let seller of sellers">
       <!-- Show Seller -->
-      <div>
-        <h2>{{seller.name}}</h2>
+      <div class="col-xs-6 col-md-3">
         <div class="thumbnail">
-          <img src="{{seller.imagePath}}" alt="Image of the seller"/>
+          <h4>{{seller.name}}</h4>
+          <a href="#">
+            <img src="{{seller.imagePath}}" alt="Image of the seller" />
+          </a>
         </div>
       </div>
-      
     </div>
   </div>
 </div>
-
