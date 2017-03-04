@@ -1,19 +1,17 @@
-<p>
-  sellers should be displayed here!
-</p>
-<div>
-  <div *ngIf="sellers" class="row">
+<div class="album text-muted row">
+  <div class="container">
     <!--Show Sellers-->
-    <div *ngFor="let seller of sellers">
+    <div *ngIf="sellers" class="row">
       <!-- Show Seller -->
-      <div class="col-xs-6 col-md-3">
-        <div class="thumbnail">
-          <h4>{{seller.name}}</h4>
-          <a href="#">
-            <img src="{{seller.imagePath}}" alt="Image of the seller" />
-          </a>
+      <div class="card" style="width: 20rem;" *ngFor="let seller of sellers" >
+        <img class="card-img-top" src="{{seller.imagePath}}" alt="Image of the seller" />
+        <div class="card-block">
+          <h4 class="card-title">{{seller.name}}</h4>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
       </div>
     </div>
   </div>
 </div>
+
