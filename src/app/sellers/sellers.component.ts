@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SellersService, Seller } from '../sellers.service';
 
 @Component({
   selector: 'app-sellers',
@@ -7,13 +6,8 @@ import { SellersService, Seller } from '../sellers.service';
   styleUrls: ['./sellers.component.css']
 })
 export class SellersComponent implements OnInit {
-  private sellers: Seller[];
-  constructor(private service: SellersService) {  }
+  constructor() {  }
 
-  ngOnInit() {
-    this.service.getSellers().subscribe( result => {
-      this.sellers = result;
-    });
-  }
+  ngOnInit() { }
 
 }
