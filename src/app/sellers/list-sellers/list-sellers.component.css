@@ -7,14 +7,13 @@
 
 .card {
   float: left;
-  width: 33.333%;
   padding: .75rem;
   margin-bottom: 2rem;
   border: 0;
 }
 
 .card > img {
-  height: 280px;
+  height: 200px;
   width: 100%;
   object-fit: cover;
   object-position: center;

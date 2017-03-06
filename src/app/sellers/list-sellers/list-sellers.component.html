@@ -1,14 +1,28 @@
 <div class="album text-muted">
   <div class="container">
-    <!--Show Sellers-->
-    <div *ngIf="sellers" class="row">
-      <!-- Show Seller -->
-      <div class="card" style="width: 20rem;" *ngFor="let seller of sellers" >
-        <img class="card-img-top" src="{{seller.imagePath}}" alt="Card image cap" />
-        <div class="card-block">
-          <h4 class="card-title">{{seller.name}}</h4>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+    <div class="row">
+      <!--Show Sellers-->
+      <div *ngIf="sellers">
+        <!-- Show Seller -->
+        <div class="col-xl-3 col-lg-4 col-sm-6 card" *ngFor="let seller of sellers">
+          <img class="card-img-top" src="{{seller.imagePath}}" alt="Image of seller" />
+          <div class="card-block">
+            <h4 class="card-title">{{seller.name}}</h4>
+          </div>
+          <div class="card-block">
+            <a href="#" class="card-link btn btn-primary">See wares</a>
+            <a href="#" class="card-link btn btn-secondary">Edit</a>
+          </div>
+        </div>
+        <!--New seller card-->
+        <div class="col-xl-3 col-lg-4 col-sm-6 card">
+          <img class="card-img-top" alt="Image of seller" />
+          <div class="card-block">
+            <h4 class="card-title">Create a new seller</h4>
+          </div>
+          <div class="card-block">
+            <a href="#" class="card-link btn btn-primary">Create new</a>
+          </div>
         </div>
       </div>
     </div>
