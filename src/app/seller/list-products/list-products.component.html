@@ -1,28 +1,9 @@
 <div class="album text-muted">
   <div class="container">
     <div class="row">
-      <div *ngIf="products">
-        <!--Show Products-->
-        <div class="col-xl-3 col-lg-4 col-sm-6 card" *ngFor="let product of products">
-          <img class="card-img-top" src="{{product.imagePath}}" alt="Image of a product" />
-          <div class="card-block">
-            <h4 class="card-title">{{product.name}}</h4>
-          </div>
-          <div class="card-block">
-            <a href="#" class="card-link btn btn-secondary">Edit</a>
-            {{product.price}}
-          </div>
-        </div>
-        <!--New product card-->
-        <div class="col-xl-3 col-lg-4 col-sm-6 card">
-          <img class="card-img-top" alt="Image of seller" />
-          <div class="card-block">
-            <h4 class="card-title">Create a new seller</h4>
-          </div>
-          <div class="card-block">
-            <a href="#" class="card-link btn btn-primary">Create new</a>
-          </div>
-        </div>
+      <!--Show Products-->
+      <div class="album">
+        <app-card-product *ngFor="let product of products" [product]="product" ></app-card-product>
       </div>
     </div>
   </div>

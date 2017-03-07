@@ -1,22 +1,9 @@
+import { Product } from '../interfaces/product';
+import { Seller } from '../interfaces/seller';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/rx';
-
-export interface Seller {
-  id: number;
-  name: string;
-  category: string;
-  imagePath: string;
-}
-export interface Product {
-  id: number;
-  name: string;
-  price: number;
-  quantitySold: number;
-  quantityInStock: number;
-  imagePath: string;
-}
 
 @Injectable()
 export class SellersService {
@@ -41,5 +28,4 @@ export class SellersService {
       return <Product[]> response.json();
     });
   }
-
 }

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { SellersService, Seller } from '../../sellers.service';
+import { Seller } from 'interfaces/seller';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,16 +9,13 @@ import { Router } from '@angular/router';
 })
 export class ListSellersComponent implements OnInit {
 
-  private sellers: Seller[];
-  constructor(private service: SellersService, private router: Router) {  }
+  @Input() sellers: Seller[];
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
-    this.service.getSellers().subscribe( result => {
-      this.sellers = result;
-    });
   }
   routeToSeller(id: number) {
-    console.log('Routed To Seller: ' + id);
     this.router.navigate(['/sellers', id]);
   }
 }
