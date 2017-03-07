@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class SellersComponent implements OnInit {
-  private sellers: Seller[];
+  public sellers: Seller[];
 
   constructor( private service: SellersService, ) { }
 

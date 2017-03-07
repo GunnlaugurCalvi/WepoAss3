@@ -11,8 +11,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SellerComponent implements OnInit {
 
-  private seller: Seller;
-  private products: Product[];
+  public seller: Seller;
+  public products: Product[];
   constructor(private service: SellersService, private router: Router, private route: ActivatedRoute) {  }
 
   ngOnInit() {
