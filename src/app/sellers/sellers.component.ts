@@ -16,6 +16,8 @@ export class SellersComponent implements OnInit {
   ngOnInit() {
     this.service.getSellers().subscribe( result => {
       this.sellers = result;
+    }, err => {
+      console.log(err);
     });
   }
 

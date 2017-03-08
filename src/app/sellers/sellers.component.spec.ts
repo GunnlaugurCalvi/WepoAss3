@@ -1,3 +1,6 @@
+import { Router } from '@angular/router';
+import { ListSellersComponent } from './list-sellers/list-sellers.component';
+import { JumboSellersComponent } from './jumbo-sellers/jumbo-sellers.component';
 import { Observable } from 'rxjs/Rx';
 import { SellersService } from '../sellers.service';
 /* tslint:disable:no-unused-variable */
@@ -11,19 +14,23 @@ describe('SellersComponent', () => {
   let component: SellersComponent;
   let fixture: ComponentFixture<SellersComponent>;
 
+  const mockRouter = {
+    wow: 1
+  }
+
   const mockService = {
-    successGetProducts: true,
-    productsList: [{
-      id: 69,
+    successGetSellers: true,
+    sellersList: [{
+      id: 1,
       name: 'Ullarsmokkar',
     }],
-    getSellerProduct: function(id) {
+    getSellers: function() {
       return {
         subscribe: function(fnSuccess, fnError) {
-          if (mockService.successGetProducts === true) {
-            fnSuccess(mockService.productsList);
+          if (mockService.successGetSellers === true) {
+            fnSuccess(mockService.sellersList);
           } else {
-            fnError();
+            fnError('ERROR');
           }
         }
       };
@@ -32,10 +39,18 @@ describe('SellersComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SellersComponent ],
+      declarations: [ SellersComponent,
+        JumboSellersComponent,
+        ListSellersComponent
+      ],
+      imports: [
+      ],
       providers: [{
         provide: SellersService,
         useValue: mockService
+      }, {
+        provide: Router,
+        useValue: mockRouter
       }]
     })
     .compileComponents();
@@ -47,11 +62,26 @@ describe('SellersComponent', () => {
     fixture.detectChanges();
   });
 
-  xit('should create', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('give us product'), () => {
-    mockService.productsList = 
-  };
+  it('give us sellerList when looking for sellers', () => {
+    mockService.successGetSellers = true;
+    mockService.getSellers().subscribe( result => {
+      expect(result).toBe(mockService.sellersList);
+    }, err => {
+      expect(err).toBeUndefined();
+    });
+  });
+
+  it('give us error when looking for sellers', () => {
+    mockService.successGetSellers = false;
+    mockService.getSellers().subscribe( result => {
+      expect(result).toBeUndefined();
+    }, err => {
+      expect(err).toBe('ERROR');
+    });
+  });
+
 });
