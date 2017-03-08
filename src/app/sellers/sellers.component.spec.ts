@@ -16,10 +16,10 @@ describe('SellersComponent', () => {
 
   const mockRouter = {
     wow: 1
-  }
+  };
 
   const mockService = {
-    successGetSellers: true,
+    successGetSellers: false,
     sellersList: [{
       id: 1,
       name: 'Ullarsmokkar',

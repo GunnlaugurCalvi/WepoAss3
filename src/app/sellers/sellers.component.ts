@@ -11,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class SellersComponent implements OnInit {
   public sellers: Seller[];
 
-  constructor( private service: SellersService, ) { }
+  constructor( private service: SellersService ) { }
 
   ngOnInit() {
     this.service.getSellers().subscribe( result => {
