@@ -14,6 +14,7 @@ import { SellerComponent } from './seller/seller.component';
 import { ListProductsComponent } from './seller/list-products/list-products.component';
 import { DetailsSellerComponent } from './seller/details-seller/details-seller.component';
 import { CardProductComponent } from './seller/list-products/card-product/card-product.component';
+import { SellerDialogComponent } from './seller/list-products/seller-dialog/seller-dialog.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CardProductComponent } from './seller/list-products/card-product/card-p
     SellerComponent,
     ListProductsComponent,
     DetailsSellerComponent,
-    CardProductComponent
+    CardProductComponent,
+    SellerDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +49,7 @@ import { CardProductComponent } from './seller/list-products/card-product/card-p
     }]),
   ],
   providers: [SellersService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [SellerDialogComponent]
 })
 export class AppModule { }
