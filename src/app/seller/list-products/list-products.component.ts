@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Product} from 'interfaces/Product';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Product } from 'interfaces/Product';
 
 @Component({
   selector: 'app-list-products',
@@ -8,10 +9,14 @@ import {Product} from 'interfaces/Product';
 })
 export class ListProductsComponent implements OnInit {
   @Input() products: Product[];
-
-  constructor() {  }
+  @Output() productUpdated = new EventEmitter();
+  constructor( ) {  }
 
   ngOnInit() {
+
   }
 
+  onUpdateProduct(product) {
+    this.productUpdated.emit(product);
+  }
 }

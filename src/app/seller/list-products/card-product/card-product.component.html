@@ -4,7 +4,6 @@
     <h4 class="card-title">{{product.name}}</h4>
   </div>
   <div class="card-block">
-    <button (click)="addSeller()" class="card-link btn btn-secondary">Edit</button> {{product.price}}
+    <button (click)="onProductEdit($event)" class="card-link btn btn-secondary">Edit</button> {{product.price}}
   </div>
 </div>
-<template ngbModalContainer></template>

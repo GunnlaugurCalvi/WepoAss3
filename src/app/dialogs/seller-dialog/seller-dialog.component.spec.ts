@@ -1,3 +1,5 @@
+import { NgModel } from '@angular/forms/src/directives';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -11,7 +13,14 @@ describe('SellerDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SellerDialogComponent ]
+      declarations: [ SellerDialogComponent ],
+      providers: [{
+        provide: NgbModal,
+        useValue: NgbModal
+      }, {
+        provide: NgModel,
+        useValue: NgModel
+      }]
     })
     .compileComponents();
   }));

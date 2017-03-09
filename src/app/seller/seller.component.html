@@ -1,2 +1,10 @@
-<app-details-seller *ngIf="seller" [seller]="seller"></app-details-seller>
-<app-list-products *ngIf="products" [products]="products"></app-list-products>
+<app-details-seller
+    *ngIf="seller"
+    [seller]="seller">
+</app-details-seller>
+<app-list-products
+    *ngIf="products"
+    [products]="products"
+    (productUpdated)="onUpdateProduct($event)">
+</app-list-products>
+<template ngbModalContainer></template>

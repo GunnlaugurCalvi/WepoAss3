@@ -1,3 +1,4 @@
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute } from '@angular/router';
 import { CardProductComponent } from './list-products/card-product/card-product.component';
 import { DetailsSellerComponent } from './details-seller/details-seller.component';
@@ -19,7 +20,7 @@ describe('SellerComponent', () => {
     snapshot: {
       params: {id: 1}
     }
-  }
+  };
 
   const mockService = {
     successGetSeller: false,
@@ -70,6 +71,9 @@ describe('SellerComponent', () => {
       }, {
         provide: ActivatedRoute,
         useValue: MockActivatedRoute
+      }, {
+        provide: NgbModal,
+        useValue: NgbModal
       }]
     })
     .compileComponents();

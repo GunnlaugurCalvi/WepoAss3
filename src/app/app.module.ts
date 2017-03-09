@@ -14,7 +14,8 @@ import { SellerComponent } from './seller/seller.component';
 import { ListProductsComponent } from './seller/list-products/list-products.component';
 import { DetailsSellerComponent } from './seller/details-seller/details-seller.component';
 import { CardProductComponent } from './seller/list-products/card-product/card-product.component';
-import { SellerDialogComponent } from './seller/list-products/seller-dialog/seller-dialog.component';
+import { SellerDialogComponent } from './dialogs/seller-dialog/seller-dialog.component';
+import { ProductDialogComponent } from './dialogs/product-dialog/product-dialog.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { SellerDialogComponent } from './seller/list-products/seller-dialog/sell
     DetailsSellerComponent,
     CardProductComponent,
     SellerDialogComponent,
+    ProductDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +52,6 @@ import { SellerDialogComponent } from './seller/list-products/seller-dialog/sell
   ],
   providers: [SellersService],
   bootstrap: [AppComponent],
-  entryComponents: [SellerDialogComponent]
+  entryComponents: [SellerDialogComponent, ProductDialogComponent]
 })
 export class AppModule { }

@@ -1,3 +1,4 @@
+import { Seller } from '../../../interfaces/seller';
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -8,7 +9,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class SellerDialogComponent implements OnInit {
 
-  sellerName: string;
+  seller: Seller;
 
   constructor(public activeModal: NgbActiveModal) { }
 
@@ -18,6 +19,6 @@ export class SellerDialogComponent implements OnInit {
     this.activeModal.dismiss();
   }
   onOk() {
-    this.activeModal.close(this.sellerName);
+    this.activeModal.close(this.seller);
   }
 }
