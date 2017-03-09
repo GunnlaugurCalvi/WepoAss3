@@ -8,7 +8,7 @@ import 'rxjs/rx';
 @Injectable()
 export class SellersService {
 
-  constructor(private http: Http, ) { }
+  constructor(private http: Http ) { }
 
   getSellers(): Observable<Seller[]> {
     return this.http.get('http://localhost:5000/api/sellers')
