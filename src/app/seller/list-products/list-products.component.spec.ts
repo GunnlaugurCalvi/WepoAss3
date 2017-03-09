@@ -1,3 +1,4 @@
+import { CardProductComponent } from './card-product/card-product.component';
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -11,7 +12,7 @@ describe('ListProductsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ListProductsComponent ]
+      declarations: [ ListProductsComponent, CardProductComponent ]
     })
     .compileComponents();
   }));
@@ -22,7 +23,7 @@ describe('ListProductsComponent', () => {
     fixture.detectChanges();
   });
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 });
