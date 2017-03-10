@@ -28,4 +28,10 @@ export class SellersService {
       return <Product[]> response.json();
     });
   }
+  updateProduct(sellerid: number, product: Product) {
+    return this.http.put(`http://localhost:5000/api/sellers/${sellerid}/products/${product.id}`, JSON.stringify(product))
+    .map( response => {
+      return <Product[]> response.json();
+    });
+  }
 }

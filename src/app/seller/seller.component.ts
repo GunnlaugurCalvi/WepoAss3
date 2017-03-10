@@ -35,6 +35,8 @@ export class SellerComponent implements OnInit {
     modalInstance.componentInstance.product = product;
     modalInstance.result.then(success => {
       console.log('Dialog was closed very nice!');
+      console.log(success);
+      this.service.updateProduct(this.seller.id, success);
     }).catch(failure => {
       console.log('Dialog was closed not very nice!');
     });
