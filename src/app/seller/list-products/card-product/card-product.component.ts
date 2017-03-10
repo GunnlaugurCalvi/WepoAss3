@@ -11,12 +11,13 @@ export class CardProductComponent implements OnInit {
   @Input() product: Product;
   @Output() productUpdated = new EventEmitter();
 
-  onProductEdit() {
-    this.productUpdated.emit(this.product);
-  }
-
   constructor() { }
 
   ngOnInit() {
   }
+
+  onProductEdit() {
+    this.productUpdated.emit(this.product);
+  }
+
 }

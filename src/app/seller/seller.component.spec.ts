@@ -71,7 +71,7 @@ describe('SellerComponent', () => {
       }, {
         provide: ActivatedRoute,
         useValue: MockActivatedRoute
-      }, {
+      },   {
         provide: NgbModal,
         useValue: NgbModal
       }]

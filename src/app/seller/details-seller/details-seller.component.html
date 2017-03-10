@@ -2,11 +2,9 @@
   <div class="container">
     <h1 class="jumbotron-heading">{{seller.name}}</h1>
     <div>{{seller.category}}</div>
-    <div class="">
-      <div class="thumbnail">
-        <img src="{{seller.imagePath}}" class="rounded thumbnail" alt="Image of seller">
-      </div>
+    <div class="thumbnail">
+      <img src="{{seller.imagePath}}" class="rounded thumbnail" alt="Image of seller">
     </div>
+    <button (click)="onSellerEdit($event)" class="card-link btn btn-secondary">Edit Seller</button>
   </div>
 </section>
-<template ngbModalContainer></template>

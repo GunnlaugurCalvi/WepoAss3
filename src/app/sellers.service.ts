@@ -7,31 +7,32 @@ import 'rxjs/rx';
 
 @Injectable()
 export class SellersService {
-
+  url = 'http://localhost:5000/api';
   constructor(private http: Http ) { }
 
   getSellers(): Observable<Seller[]> {
-    return this.http.get('http://localhost:5000/api/sellers')
+    return this.http.get(this.url + '/sellers')
     .map( response => {
       return <Seller[]> response.json();
     });
   }
   getSellerById(id: number): Observable<Seller> {
-    return this.http.get(`http://localhost:5000/api/sellers/${id}`)
+    return this.http.get(this.url + `/sellers/${id}`)
     .map( response => {
       return <Seller> response.json();
     });
   }
   getProducts(id: number): Observable<Product[]> {
-    return this.http.get(`http://localhost:5000/api/sellers/${id}/products`)
+    return this.http.get(this.url + `/sellers/${id}/products`)
     .map( response => {
       return <Product[]> response.json();
     });
   }
   updateProduct(sellerid: number, product: Product) {
-    return this.http.put(`http://localhost:5000/api/sellers/${sellerid}/products/${product.id}`, JSON.stringify(product))
-    .map( response => {
-      return <Product[]> response.json();
-    });
+    const url = this.url + `/sellers/${sellerid}/products/${product.id}`;
+    return this.http.put(url, product)
+      .map((res) => res.json())
+        .catch((error: any) => Observable
+          .throw(error.json().error || 'Server error'));
   }
 }

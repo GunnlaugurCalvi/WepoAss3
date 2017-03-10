@@ -1,3 +1,4 @@
+import { SellerDialogComponent } from '../dialogs/seller-dialog/seller-dialog.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Product } from 'interfaces/product';
 import { Seller } from 'interfaces/seller';
@@ -33,6 +34,17 @@ export class SellerComponent implements OnInit {
   onUpdateProduct(product) {
     const modalInstance = this.modalService.open(ProductDialogComponent);
     modalInstance.componentInstance.product = product;
+    modalInstance.result.then(success => {
+      console.log('Dialog was closed very nice!');
+      console.log(success);
+      this.service.updateProduct(this.seller.id, success);
+    }).catch(failure => {
+      console.log('Dialog was closed not very nice!');
+    });
+  }
+  onUpdateSeller(seller) {
+    const modalInstance = this.modalService.open(SellerDialogComponent);
+    modalInstance.componentInstance.seller = seller;
     modalInstance.result.then(success => {
       console.log('Dialog was closed very nice!');
       console.log(success);
