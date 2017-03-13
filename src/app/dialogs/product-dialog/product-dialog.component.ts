@@ -16,14 +16,26 @@ export class ProductDialogComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal, public fb: FormBuilder) { }
 
   ngOnInit() {
-    this.productForm = this.fb.group({
-      id: [this.product.id],
-      name: [this.product.name, [Validators.required, Validators.minLength(1)]],
-      price: [this.product.price],
-      quantityInStock: [this.product.quantityInStock],
-      quantitySold: [this.product.quantitySold],
-      imagePath: [this.product.imagePath],
-    });
+
+    if (this.product) {
+      this.productForm = this.fb.group({
+        id: [this.product.id],
+        name: [this.product.name, [Validators.required, Validators.minLength(1)]],
+        price: [this.product.price],
+        quantityInStock: [this.product.quantityInStock],
+        quantitySold: [this.product.quantitySold],
+        imagePath: [this.product.imagePath],
+      });
+    } else {
+      this.productForm = this.fb.group({
+        id: [],
+        name: [, [Validators.required, Validators.minLength(1)]],
+        price: [],
+        quantityInStock: [],
+        quantitySold: [],
+        imagePath: [],
+      });
+    }
   }
   onCancel() {
     this.activeModal.dismiss();

@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterModule } from '@angular/router';
 import { ListSellersComponent } from './list-sellers/list-sellers.component';
 import { JumboSellersComponent } from './jumbo-sellers/jumbo-sellers.component';
 import { Observable } from 'rxjs/Rx';
@@ -13,10 +13,6 @@ import { SellersComponent } from './sellers.component';
 describe('SellersComponent', () => {
   let component: SellersComponent;
   let fixture: ComponentFixture<SellersComponent>;
-
-  const mockRouter = {
-    wow: 1
-  };
 
   const mockService = {
     successGetSellers: false,
@@ -44,13 +40,20 @@ describe('SellersComponent', () => {
         ListSellersComponent
       ],
       imports: [
+        RouterModule
       ],
       providers: [{
         provide: SellersService,
         useValue: mockService
       }, {
+        provide: RouterLink,
+        useValue: RouterLink,
+      }, {
         provide: Router,
-        useValue: mockRouter
+        useValue: Router
+      },  {
+        provide: ActivatedRoute,
+        useValue: ActivatedRoute
       }]
     })
     .compileComponents();

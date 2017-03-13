@@ -15,7 +15,4 @@ export class ListSellersComponent implements OnInit {
 
   ngOnInit() {
   }
-  routeToSeller(id: number) {
-    this.router.navigate(['/sellers', id]);
-  }
 }

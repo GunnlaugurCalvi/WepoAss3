@@ -1,3 +1,4 @@
+import { isDefined } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Seller } from 'interfaces/seller';
 import { Component, OnInit } from '@angular/core';
@@ -15,12 +16,21 @@ export class SellerDialogComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal, public fb: FormBuilder ) { }
 
   ngOnInit() {
-    this.sellerForm = this.fb.group({
-      id: [this.seller.id],
-      name: [this.seller.name, [Validators.required, Validators.minLength(1)]],
-      category: [this.seller.category],
-      imagePath: [this.seller.imagePath],
-    });
+    if (this.seller) {
+      this.sellerForm = this.fb.group({
+        id: [this.seller.id],
+        name: [this.seller.name, [Validators.required, Validators.minLength(1)]],
+        category: [this.seller.category],
+        imagePath: [this.seller.imagePath],
+      });
+    } else {
+      this.sellerForm = this.fb.group({
+        id: [],
+        name: [, [Validators.required, Validators.minLength(1)]],
+        category: [],
+        imagePath: [],
+      });
+    }
   }
   onCancel() {
     this.activeModal.dismiss();

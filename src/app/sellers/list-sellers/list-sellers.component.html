@@ -4,7 +4,7 @@
       <div class="col-md-8 col-9 list-group-item-header"><h5>Seller</h5></div>
       <div class="col-md-4 col-3 list-group-item-header"><h5>Category</h5></div>
     </div>
-    <div *ngFor="let seller of sellers" class="list-group-item list-group-item-action" (click)="routeToSeller(seller.id)">
+    <div *ngFor="let seller of sellers" class="list-group-item list-group-item-action" [routerLink]="['/sellers/', seller.id]">
       <div class="col-md-8 col-9">{{seller.name}}</div>
       <div class="col-md-4 col-3">{{seller.category}}</div>
     </div>

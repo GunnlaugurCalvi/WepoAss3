@@ -1,5 +1,6 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModel } from '@angular/forms/src/directives';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -20,7 +21,11 @@ describe('SellerDialogComponent', () => {
       }, {
         provide: NgModel,
         useValue: NgModel
-      }]
+      }, {
+        provide: NgbActiveModal,
+        useValue: NgbActiveModal
+      }],
+      imports: [FormsModule, ReactiveFormsModule],
     })
     .compileComponents();
   }));

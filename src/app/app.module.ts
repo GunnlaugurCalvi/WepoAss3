@@ -50,6 +50,7 @@ import { ProductDialogComponent } from './dialogs/product-dialog/product-dialog.
       path: '**',
       redirectTo: '/sellers'
     }]),
+    RouterModule,
   ],
   providers: [SellersService],
   bootstrap: [AppComponent],
