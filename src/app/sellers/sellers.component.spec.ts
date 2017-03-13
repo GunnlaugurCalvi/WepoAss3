@@ -86,4 +86,5 @@ describe('SellersComponent', () => {
       expect(err).toBe('ERROR');
     });
   });
+
 });

@@ -28,11 +28,53 @@ export class SellersService {
       return <Product[]> response.json();
     });
   }
+
+  addProduct(sellerid: number, product: Product) {
+    const url = this.url + `/sellers/${sellerid}/products/`;
+    const body = {
+      name: product.name,
+      price: product.price,
+      imagePath: product.imagePath
+    };
+    return this.http.put(url, body)
+    .map((res) => {
+      return <Product> res.json();
+    });
+  }
   updateProduct(sellerid: number, product: Product) {
     const url = this.url + `/sellers/${sellerid}/products/${product.id}`;
-    return this.http.put(url, product)
-      .map((res) => res.json())
-        .catch((error: any) => Observable
-          .throw(error.json().error || 'Server error'));
+    const body = {
+      name: product.name,
+      price: product.price,
+      imagePath: product.imagePath
+    };
+    return this.http.put(url, body)
+    .map((res) => {
+      return <Product> res.json();
+    });
+  }
+  addSeller(seller: Seller) {
+    const url = this.url + `/sellers/`;
+    const body = {
+      name: seller.name,
+      category: seller.category,
+      imagePath: seller.imagePath
+    };
+    return this.http.put(url, body)
+    .map((res) => {
+      return <Seller> res.json();
+    });
+  }
+  updateSeller(seller: Seller) {
+    const url = this.url + `/sellers/${seller.id}`;
+    const body = {
+      name: seller.name,
+      category: seller.category,
+      imagePath: seller.imagePath
+    };
+    return this.http.put(url, body)
+    .map((res) => {
+      return <Seller> res.json();
+    });
   }
 }
