@@ -10,6 +10,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class DetailsSellerComponent implements OnInit {
   @Input() seller: Seller;
   @Output() sellerUpdated = new EventEmitter();
+  @Output() productAdded = new EventEmitter();
 
   constructor() {  }
 
@@ -18,5 +19,8 @@ export class DetailsSellerComponent implements OnInit {
 
   onSellerEdit() {
     this.sellerUpdated.emit(this.seller);
+  }
+  onProductAdd() {
+    this.productAdded.emit(this.seller);
   }
 }

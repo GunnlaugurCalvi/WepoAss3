@@ -30,13 +30,13 @@ export class SellersService {
   }
 
   addProduct(sellerid: number, product: Product) {
-    const url = this.url + `/sellers/${sellerid}/products/`;
+    const url = this.url + `/sellers/${sellerid}/products`;
     const body = {
       name: product.name,
       price: product.price,
       imagePath: product.imagePath
     };
-    return this.http.put(url, body)
+    return this.http.post(url, body)
     .map((res) => {
       return <Product> res.json();
     });
@@ -60,7 +60,7 @@ export class SellersService {
       category: seller.category,
       imagePath: seller.imagePath
     };
-    return this.http.put(url, body)
+    return this.http.post(url, body)
     .map((res) => {
       return <Seller> res.json();
     });

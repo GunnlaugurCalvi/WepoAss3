@@ -31,6 +31,21 @@ export class SellerComponent implements OnInit {
     });
 
   }
+  onProductAdded() {
+    const modalInstance = this.modalService.open(ProductDialogComponent);
+    modalInstance.result.then(success => {
+      console.log('Dialog was closed very nice!');
+      console.log(success);
+      this.service.addProduct(this.seller.id, success).subscribe( succ => {
+        console.log(succ);
+        this.products.push(succ['product']);
+      }, error => {
+        console.log(error);
+      });
+    }).catch(failure => {
+      console.log('Dialog was closed not very nice!');
+    });
+  }
   onUpdateProduct(product) {
     if (!product) { return; }
     const modalInstance = this.modalService.open(ProductDialogComponent);

@@ -1,7 +1,8 @@
 <app-details-seller
     *ngIf="seller"
     [seller]="seller"
-    (sellerUpdated)="onUpdateSeller($event)">
+    (sellerUpdated)="onUpdateSeller($event)"
+    (productAdded)="onProductAdded($event)">
 </app-details-seller>
 <app-list-products
     *ngIf="products"

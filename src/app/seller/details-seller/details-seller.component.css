@@ -17,25 +17,10 @@
   max-width: 40rem;
 }
 
-.btn {
-  border: 0;
-}
-
-.card {
-  float: left;
-  padding: .75rem;
-  margin-bottom: 2rem;
-  border: 0;
-}
-
-.card > img {
-  height: 280px;
+img {
+  height: 160px;
   width: 100%;
   object-fit: cover;
   object-position: center;
   margin-bottom: .75rem;
-}
-
-.card-text {
-  font-size: 85%;
 }
