@@ -2,9 +2,22 @@
 
 import { TestBed, async, inject } from '@angular/core/testing';
 import { SellersService } from './sellers.service';
-import { Http } from '@angular/http';
+import { Http, BaseRequestOptions, Response, ResponseOptions, RequestMethod } from '@angular/http';
+import {MockBackend, MockConnection} from '@angular/http/testing';
+
+
 
 describe('SellersService', () => {
+  let service;
+  let backend;
+
+
+  const mockCalls = {
+    get: jasmine.createSpy('get'),
+    post: jasmine.createSpy('post'),
+    put: jasmine.createSpy('put'),
+    map: jasmine.createSpy('map')
+  };
 
   const mockHttp = {
     mockSellersList: [{
@@ -46,12 +59,24 @@ describe('SellersService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ SellersService ],
-      providers: [{
+      providers: [ MockBackend, BaseRequestOptions, {
         provide: Http,
-        useValue: mockHttp
-      }]
-    });
+        useFactory: (backendInstance: MockBackend, defaultOptions: BaseRequestOptions) => {
+          return new Http(backendInstance, defaultOptions);
+        },
+        deps: [MockBackend, BaseRequestOptions]
+      },
+        SellersService
+      ]});
+  });
+  beforeEach(inject([ SellersService, MockBackend], (userService: SellersService, mockBackend: MockBackend) => {
+    service = userService;
+    backend = mockBackend;
+  }));
+
+  it('blabla', () => {
+    service.getSellers();
+    expect(mockCalls.get).not.toHaveBeenCalled();
   });
 
   it('should...', async(() => {
@@ -60,4 +85,46 @@ describe('SellersService', () => {
     });
   }));
 
+  it('should send....', (done) => {
+    done();
+  });
+
+  it('should call getSellers', (done) => {
+    backend.connections.subscribe((connection: MockConnection) => {
+      let options = new ResponseOptions(mockHttp.mockSeller);
+      connection.mockRespond(new Response(options));
+    });
+    service.getSellers().subscribe(resp => {
+      expect(resp)
+    });
+    done();
+  });
+
+  it('should call getSellerbyId', (done) => {
+    backend.connections.subscribe((connection: MockConnection) => {
+      let options = new ResponseOptions({
+        body: JSON.stringify({id: 1})
+      });
+      connection.mockRespond(new Response(options));
+    });
+    service.getSellerById(1).subscribe(resp => {
+      expect(resp).toEqual({id: 1});
+      done();
+    })
+  });
+
+
+  it('should call getProducts', (done) =>{
+    backend.connections.subscribe((connection: MockConnection) => {
+      let options = new ResponseOptions({
+        body: JSON.stringify({id: 1})
+      });
+      connection.mockRespond(new Response(options));
+    });
+    service.getProducts(1).subscribe(resp => {
+      expect(resp).toEqual({id: 1});
+      done();
+    })
+
+  })
 });
