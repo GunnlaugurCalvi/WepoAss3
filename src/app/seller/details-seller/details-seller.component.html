@@ -1,10 +1,24 @@
-<section *ngIf="seller" class="text-center">
-  <div class="container">
-    <h1 class="jumbotron-heading">{{seller.name}}</h1>
-    <div>{{seller.category}}</div>
-    <div class="thumbnail">
-      <img src="{{seller.imagePath}}" class="rounded thumbnail" alt="Image of seller">
+<div class="container jumbotron">
+  <div *ngIf="seller" class="row text-center">
+    <div class="col-sm-12 col-md-4 mb-0">
+      <div class="card mb-0">
+        <img src="{{seller.imagePath}}" class="mb-0 rounded img-responsive img-card" alt="Image of seller">
+      </div>
     </div>
-    <button (click)="onSellerEdit($event)" class="card-link btn btn-secondary">Edit Seller</button>
+    <div class="col-sm-12 col-md-5 col align-self-center">
+      <h3 class="col-sm-12 jumbotron-heading">{{seller.name}}</h3>
+      <h4 class="col-sm-12 jumbotron-heading"> {{seller.category}} </h4>
+    </div>
+    <div class="col-sm-12 col-md-3 col align-self-center container-fluid">
+      <div class="row">
+        <button type="button" (click)="onSellerEdit($event)" class="col-sm-12 btn btn-secondary mt-1">Edit Seller</button>
+      </div>
+      <div class="row">
+        <button type="button" (click)="onProductAdd($event)" class="col-sm-12 btn btn-secondary mt-1">Add Product</button>
+      </div>
+      <div class="row">
+        <button type="button" [routerLink]="['/sellers/']" class="col-sm-12 btn btn-secondary mt-1">Return to Sellers</button>
+      </div>
+    </div>
   </div>
-</section>
+</div>

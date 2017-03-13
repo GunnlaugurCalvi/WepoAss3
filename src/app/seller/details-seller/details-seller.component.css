@@ -1,15 +1,3 @@
-.thumbnail {
-  position: relative;
-  width: 200px;
-  height: 200px;
-  overflow: hidden;
-}
-
-.thumbnail img {
-  object-fit: cover;
-  object-position: center;
-}
-
 .jumbotron {
   padding-top: 6rem;
   padding-bottom: 6rem;
@@ -27,4 +15,27 @@
 
 .jumbotron .container {
   max-width: 40rem;
+}
+
+.btn {
+  border: 0;
+}
+
+.card {
+  float: left;
+  padding: .75rem;
+  margin-bottom: 2rem;
+  border: 0;
+}
+
+.card > img {
+  height: 280px;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  margin-bottom: .75rem;
+}
+
+.card-text {
+  font-size: 85%;
 }
