@@ -61,6 +61,9 @@ describe('SellersComponent', () => {
       }, {
         provide: NgbActiveModal,
         useValue: NgbActiveModal
+      }, {
+        provide: ToastsManager,
+        useValue: ToastsManager
       }]
     })
     .compileComponents();

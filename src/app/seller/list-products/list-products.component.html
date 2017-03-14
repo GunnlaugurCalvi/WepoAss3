@@ -1,5 +1,5 @@
 <section class="album text-muted">
-  <div class="container">
+  <div *ngIf="products" class="container">
     <ngb-tabset *ngIf="products.length>0" type="pills">
       <ngb-tab>
         <template ngbTabTitle>All Products</template>
@@ -24,7 +24,7 @@
         </template>
       </ngb-tab>
     </ngb-tabset>
-    <ngb-alert *ngIf="products.length===0 || !products" [dismissible]="false">
+    <ngb-alert *ngIf="!products || products.length===0" [dismissible]="false">
       <strong>No products!</strong> This seller currently has no products.
     </ngb-alert>
   </div>
