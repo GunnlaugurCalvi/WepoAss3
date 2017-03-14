@@ -2,7 +2,7 @@
   <div class="container">
     <ngb-tabset type="pills">
       <ngb-tab>
-        <template ngbTabTitle><b>Fancy</b> title</template>
+        <template ngbTabTitle>All Products</template>
         <template ngbTabContent>
           <div class="row">
             <div class="album">
@@ -15,16 +15,19 @@
         </template>
       </ngb-tab>
       <ngb-tab>
-        <template ngbTabTitle>Title</template>
+        <template ngbTabTitle>Top Ten Most Sold</template>
         <template ngbTabContent>
-          <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
-          master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh
-          dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum
-          iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+          <div class="row">
+            <div class="album">
+              <app-card-product *ngFor="let product of topten" 
+                [product]="product"
+                (productUpdated)="onUpdateProduct($event)">
+              </app-card-product>
+            </div>
+          </div>
         </template>
       </ngb-tab>
     </ngb-tabset>
-
   </div>
 </section>
 

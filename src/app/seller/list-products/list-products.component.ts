@@ -10,10 +10,17 @@ import { Product } from 'interfaces/Product';
 export class ListProductsComponent implements OnInit {
   @Input() products: Product[];
   @Output() productUpdated = new EventEmitter();
+
+  topten: Product[];
+
   constructor( ) {  }
 
   ngOnInit() {
-
+    if (this.products) {
+      this.topten = this.products;
+      this.topten.sort((a, b) => a.quantitySold > b.quantitySold ? -1 : a.quantitySold < b.quantitySold ? 1 : 0);
+      this.topten = this.topten.splice(0, 10);
+    }
   }
 
   onUpdateProduct(product) {
