@@ -17,7 +17,6 @@ export class ProductDialogComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal, public fb: FormBuilder) { }
 
   ngOnInit() {
-
     if (this.product) {
       this.productForm = this.fb.group({
         id: [this.product.id],
