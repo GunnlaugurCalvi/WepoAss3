@@ -24,5 +24,6 @@ export class ListProductsComponent implements OnInit {
 
   onUpdateProduct(product) {
     this.productUpdated.emit(product);
+    this.ngOnInit();
   }
 }

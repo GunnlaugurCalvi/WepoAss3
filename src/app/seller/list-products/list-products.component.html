@@ -1,14 +1,12 @@
 <section class="album text-muted">
-  <div class="container">
-    <ngb-tabset type="pills">
+  <div *ngIf="products" class="container">
+    <ngb-tabset *ngIf="products.length>0" type="pills">
       <ngb-tab>
         <template ngbTabTitle>All Products</template>
         <template ngbTabContent>
           <div class="row">
             <div class="album">
-              <app-card-product *ngFor="let product of products" 
-                [product]="product"
-                (productUpdated)="onUpdateProduct($event)">
+              <app-card-product *ngFor="let product of products" [product]="product" (productUpdated)="onUpdateProduct($event)">
               </app-card-product>
             </div>
           </div>
@@ -19,16 +17,15 @@
         <template ngbTabContent>
           <div class="row">
             <div class="album">
-              <app-card-product *ngFor="let product of topten" 
-                [product]="product"
-                (productUpdated)="onUpdateProduct($event)">
+              <app-card-product *ngFor="let product of topten" [product]="product" (productUpdated)="onUpdateProduct($event)">
               </app-card-product>
             </div>
           </div>
         </template>
       </ngb-tab>
     </ngb-tabset>
+    <ngb-alert *ngIf="!products || products.length===0" [dismissible]="false">
+      <strong>No products!</strong> This seller currently has no products.
+    </ngb-alert>
   </div>
 </section>
-
-

@@ -1,5 +1,13 @@
+import { NgbAlert } from '@ng-bootstrap/ng-bootstrap/alert/alert.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NgbModal, NgbTab, NgbTabsetConfig, NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
+import {
+    NgbAlertConfig,
+    NgbAlertModule,
+    NgbModal,
+    NgbTab,
+    NgbTabsetConfig,
+    NgbTabsetModule
+} from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router, RouterLink, RouterModule } from '@angular/router';
 import { CardProductComponent } from './list-products/card-product/card-product.component';
 import { DetailsSellerComponent } from './details-seller/details-seller.component';
@@ -8,7 +16,7 @@ import { ListProductsComponent } from './list-products/list-products.component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core';
 
 import {SellerComponent} from './seller.component';
 import {SellersService} from 'app/sellers.service';
@@ -44,7 +52,7 @@ describe('SellerComponent', () => {
         }
       };
     }
-  }
+  };
 
 
   const MockActivatedRoute = {
@@ -60,6 +68,7 @@ describe('SellerComponent', () => {
   const mockService = {
     successGetSeller: false,
     successGetProducts: false,
+    successUpdateProducts: false,
     seller: {
       id: 1,
       name: 'Smokkasalan',
@@ -89,6 +98,9 @@ describe('SellerComponent', () => {
           }
         }
       };
+    },
+    updateProduct: function(products) {
+      return 'UPDATED';
     }
   };
 
@@ -124,13 +136,22 @@ describe('SellerComponent', () => {
       }, {
         provide: ToastsManager,
         useValue: ToastsManager
+      }, {
+        provide: NgbAlert,
+        useValue: NgbAlert
+      }, {
+        provide: NgbAlertConfig,
+        useValue: NgbAlertConfig
       }],
       imports: [
         ReactiveFormsModule,
         NgbTabsetModule,
         RouterModule,
+        NgbAlertModule
       ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
+
     .compileComponents();
   }));
 
@@ -160,13 +181,16 @@ describe('SellerComponent', () => {
   });
 
   it('should give us error when looking for sellers', () => {
-    mockService.successGetProducts = false;
     mockService.successGetSeller = false;
     mockService.getSellerById(1).subscribe( result => {
       expect(result).toBeUndefined();
     }, err => {
       expect(err).toBe('ERROR');
     });
+  });
+
+  it('should give us error when looking for products', () => {
+    mockService.successGetProducts = false;
     mockService.getProducts(1).subscribe( result => {
       expect(result).toBeUndefined();
     }, err => {
@@ -174,11 +198,9 @@ describe('SellerComponent', () => {
     });
   });
 
-  it('should give us modal', () => {
-    const mock = mockModal;
-    mock.pressedOk = false;
-    mock.open().result.then(res => {
-      expect(res).toBe(mock.seller);
-    });
+  it('should mock successful updateProduct', () => {
+
+    mockModal.pressedOk = true;
+
   });
 });
