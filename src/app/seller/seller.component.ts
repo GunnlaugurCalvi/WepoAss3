@@ -47,7 +47,7 @@ export class SellerComponent implements OnInit {
         this.toastr.error(error, 'Error!', {dismiss: 'auto'});
       });
     }).catch(failure => {
-      this.toastr.error(failure, 'Error!', {dismiss: 'auto'});
+      // this.toastr.error(failure, 'Error!', {dismiss: 'auto'});
     });
   }
   onUpdateProduct(product) {
@@ -58,12 +58,12 @@ export class SellerComponent implements OnInit {
       this.service.updateProduct(this.seller.id, success).subscribe( succ => {
         console.log(succ);
         this.products[this.products.indexOf(product)] = succ['product'];
-        this.toastr.success(this.products + ' has been updated!', 'Success!', {dismiss: 'auto'});
+        this.toastr.success('Product has been updated!', 'Success!', {dismiss: 'auto'});
       }, error => {
         this.toastr.error(error, 'Error!', {dismiss: 'auto'});
       });
     }).catch(failure => {
-      this.toastr.error(failure, 'Error!', {dismiss: 'auto'});
+      // this.toastr.error(failure, 'Error!', {dismiss: 'auto'});
     });
   }
   onUpdateSeller(seller) {
@@ -73,12 +73,12 @@ export class SellerComponent implements OnInit {
     modalInstance.result.then(success => {
       this.service.updateSeller(success).subscribe( succ  => {
         this.seller = succ;
-        this.toastr.success(' has been updated!', 'Success!', {dismiss: 'auto'});
+        this.toastr.success('Seller has been updated!', 'Success!', {dismiss: 'auto'});
       }, error => {
         this.toastr.error(error, 'Error!', {dismiss: 'auto'});
       });
     }).catch(failure => {
-      this.toastr.error(failure, 'Error!', {dismiss: 'auto'});
+      // this.toastr.error(failure, 'Error!', {dismiss: 'auto'});
     });
   }
 }

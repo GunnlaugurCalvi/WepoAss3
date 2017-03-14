@@ -39,7 +39,6 @@ export class SellersComponent implements OnInit {
         this.toastr.error(error, 'Error!', {dismiss: 'auto'});
       });
     }).catch(failure => {
-      this.toastr.error(failure, 'Error!', {dismiss: 'auto'});
     });
   }
 
