@@ -7,6 +7,7 @@ import { By } from '@angular/platform-browser';
 import { CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core';
 
 import { ListProductsComponent } from './list-products.component';
+import {ListSellersComponent} from "../../sellers/list-sellers/list-sellers.component";
 
 describe('ListProductsComponent', () => {
   let component: ListProductsComponent;
@@ -36,4 +37,5 @@ describe('ListProductsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });
