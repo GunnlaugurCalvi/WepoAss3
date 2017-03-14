@@ -6,12 +6,13 @@ import { ActivatedRoute } from '@angular/router';
 import { SellersService } from 'app/sellers.service';
 import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {ProductDialogComponent} from 'app/dialogs/product-dialog/product-dialog.component';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import {ToastsManager, ToastOptions} from 'ng2-toastr/ng2-toastr';
 
 @Component({
   selector: 'app-seller',
   templateUrl: './seller.component.html',
-  styleUrls: ['./seller.component.css']
+  styleUrls: ['./seller.component.css'],
+  providers: [ToastsManager, ToastOptions]
 })
 export class SellerComponent implements OnInit {
 

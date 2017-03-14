@@ -8,6 +8,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { SellersComponent } from './sellers.component';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 describe('SellersComponent', () => {
   let component: SellersComponent;

@@ -3,12 +3,13 @@ import { SellersService } from 'app/sellers.service';
 import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import { SellerDialogComponent } from '../dialogs/seller-dialog/seller-dialog.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import {ToastsManager, ToastOptions} from 'ng2-toastr/ng2-toastr';
 
 @Component({
   selector: 'app-sellers',
   templateUrl: './sellers.component.html',
-  styleUrls: ['./sellers.component.css']
+  styleUrls: ['./sellers.component.css'],
+  providers: [ToastsManager, ToastOptions]
 })
 
 export class SellersComponent implements OnInit {
@@ -35,7 +36,7 @@ export class SellersComponent implements OnInit {
       this.service.addSeller(success).subscribe( succ => {
         console.log(succ);
         this.sellers.push(succ);
-        this.toastr.success('New User: has been added', 'Success!', {dismiss: 'auto'});
+        this.toastr.success('New User has been added', 'Success!', {dismiss: 'auto'});
       }, error => {
         this.toastr.error('Something went wrong!', 'Error!', {dismiss: 'auto'});
         console.log(error);

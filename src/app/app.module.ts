@@ -16,7 +16,7 @@ import { DetailsSellerComponent } from './seller/details-seller/details-seller.c
 import { CardProductComponent } from './seller/list-products/card-product/card-product.component';
 import { SellerDialogComponent } from './dialogs/seller-dialog/seller-dialog.component';
 import { ProductDialogComponent } from './dialogs/product-dialog/product-dialog.component';
-import { ToastModule, ToastOptions } from 'ng2-toastr/ng2-toastr';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
 @NgModule({
   declarations: [

@@ -6,6 +6,7 @@ import { DetailsSellerComponent } from './details-seller/details-seller.componen
 import { ListProductsComponent } from './list-products/list-products.component';
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
@@ -25,7 +26,7 @@ describe('SellerComponent', () => {
 
   const mockRouter = {
     navigate: jasmine.createSpy('navigate')
-  }
+  };
 
   const mockService = {
     successGetSeller: false,
@@ -91,6 +92,9 @@ describe('SellerComponent', () => {
       }, {
         provide: NgbTabsetConfig,
         useValue: NgbTabsetConfig
+      }, {
+        provide: ToastsManager,
+        useValue: ToastsManager
       }],
       imports: [
         ReactiveFormsModule,
