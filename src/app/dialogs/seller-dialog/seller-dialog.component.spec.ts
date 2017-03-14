@@ -12,9 +12,14 @@ describe('SellerDialogComponent', () => {
   let component: SellerDialogComponent;
   let fixture: ComponentFixture<SellerDialogComponent>;
 
+  const mockModal = {
+    dismiss: jasmine.createSpy("dismiss"),
+    close: jasmine.createSpy("close")
+  };
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ SellerDialogComponent ],
+      imports: [FormsModule, ReactiveFormsModule],
       providers: [{
         provide: NgbModal,
         useValue: NgbModal
@@ -25,7 +30,6 @@ describe('SellerDialogComponent', () => {
         provide: NgbActiveModal,
         useValue: NgbActiveModal
       }],
-      imports: [FormsModule, ReactiveFormsModule],
     })
     .compileComponents();
   }));
@@ -33,10 +37,26 @@ describe('SellerDialogComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SellerDialogComponent);
     component = fixture.componentInstance;
+    component.seller =  {
+      id: 1,
+      name: 'hax0r',
+      category: 'asd',
+      imagePath: 'https://www.hx0r.com/pic'
+    };
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should call onCancel on modal dialog', () =>{
+    component.onCancel();
+    expect(mockModal.dismiss).toHaveBeenCalled();
+  });
+
+  // it('should call onOk on modal dialog', () => {
+  //   component.onOk();
+  //   expect(mockModal.close).toHaveBeenCalled();
+  // });
 });
