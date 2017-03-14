@@ -55,8 +55,8 @@ describe('SellerDialogComponent', () => {
     expect(mockModal.dismiss).toHaveBeenCalled();
   });
 
-  // it('should call onOk on modal dialog', () => {
-  //   component.onOk();
-  //   expect(mockModal.close).toHaveBeenCalled();
-  // });
+  it('should call onOk on modal dialog', () => {
+    component.onOk();
+    expect(mockModal.close).toHaveBeenCalled();
+  });
 });

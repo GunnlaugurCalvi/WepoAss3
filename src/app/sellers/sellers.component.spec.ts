@@ -32,6 +32,11 @@ describe('SellersComponent', () => {
       };
     }
   };
+  const mockToastr = {
+    info: jasmine.createSpy('info'),
+    error: jasmine.createSpy('error'),
+    success: jasmine.createSpy('success')
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -96,4 +101,8 @@ describe('SellersComponent', () => {
       expect(err).toBe('ERROR');
     });
   });
+
+  xit('give successful toastr', () => {
+    expect(mockToastr.success).toHaveBeenCalled();
+  })
 });
