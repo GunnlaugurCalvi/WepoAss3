@@ -4,9 +4,12 @@
     <h4 class="card-title">{{product.name}}</h4>
   </div>
   <div class="card-block">
-    <button (click)="onProductEdit($event)" class="card-link btn btn-secondary">Edit</button>
-    <div>
-      {{product.price}}
+    <div class="row">
+      <button (click)="onProductEdit($event)" class="card-link btn btn-secondary">Edit</button>
+      <div class="ml-auto p-2">
+        <div *ngIf="product.price">Price: {{product.price}}</div>
+        <div *ngIf="product.price===0 || !product.price">FREE</div>
+      </div>
     </div>
   </div>
 </div>
