@@ -34,7 +34,8 @@ export class SellersService {
     const body = {
       name: product.name,
       price: product.price,
-      imagePath: product.imagePath
+      path: product.imagePath,
+      quantityInStock: product.quantityInStock
     };
     return this.http.post(url, body)
     .map((res) => {

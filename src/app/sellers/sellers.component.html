@@ -1,2 +1,7 @@
 <app-jumbo-sellers></app-jumbo-sellers>
-<app-list-sellers *ngIf="sellers" [sellers]="sellers"></app-list-sellers>
+<app-list-sellers
+    *ngIf="sellers"
+    [sellers]="sellers"
+    (sellerAdded)="onSellerAdded($event)">
+</app-list-sellers>
+

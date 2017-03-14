@@ -12,6 +12,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class ProductDialogComponent implements OnInit {
   product: Product;
   public productForm;
+  new: boolean;
 
   constructor(public activeModal: NgbActiveModal, public fb: FormBuilder) { }
 
@@ -27,6 +28,7 @@ export class ProductDialogComponent implements OnInit {
         imagePath: [this.product.imagePath],
       });
     } else {
+      this.new = true;
       this.productForm = this.fb.group({
         id: [],
         name: [, [Validators.required, Validators.minLength(1)]],
