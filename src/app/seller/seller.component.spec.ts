@@ -1,5 +1,6 @@
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ActivatedRoute } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgbModal, NgbTab, NgbTabsetConfig, NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
+import { ActivatedRoute, Router, RouterLink, RouterModule } from '@angular/router';
 import { CardProductComponent } from './list-products/card-product/card-product.component';
 import { DetailsSellerComponent } from './details-seller/details-seller.component';
 import { ListProductsComponent } from './list-products/list-products.component';
@@ -21,6 +22,10 @@ describe('SellerComponent', () => {
       params: {id: 1}
     }
   };
+
+  const mockRouter = {
+    navigate: jasmine.createSpy('navigate')
+  }
 
   const mockService = {
     successGetSeller: false,
@@ -66,15 +71,32 @@ describe('SellerComponent', () => {
         CardProductComponent
       ],
       providers: [{
+        provide: RouterLink,
+        useValue: RouterLink
+      }, {
+        provide: Router,
+        useValue: mockRouter
+      }, {
         provide: SellersService,
         useValue: mockService
       }, {
         provide: ActivatedRoute,
         useValue: MockActivatedRoute
-      },   {
+      }, {
         provide: NgbModal,
         useValue: NgbModal
-      }]
+      }, {
+        provide: NgbTab,
+        useValue: NgbTab
+      }, {
+        provide: NgbTabsetConfig,
+        useValue: NgbTabsetConfig
+      }],
+      imports: [
+        ReactiveFormsModule,
+        NgbTabsetModule,
+        RouterModule,
+      ],
     })
     .compileComponents();
   }));

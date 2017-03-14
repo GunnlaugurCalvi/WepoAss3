@@ -1,4 +1,4 @@
-import { ActivatedRoute, Router, RouterLink, RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterLink, RouterModule } from '@angular/router';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
@@ -17,15 +17,13 @@ describe('ListSellersComponent', () => {
         provide: RouterLink,
         useValue: RouterLink
       }, {
-        provide: Router,
-        useValue: Router
-      }, {
         provide: ActivatedRoute,
         useValue: ActivatedRoute
       }],
       imports: [
         RouterModule
-      ]
+      ],
+
     })
     .compileComponents();
   }));

@@ -1,3 +1,5 @@
+import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, Router, RouterLink, RouterModule } from '@angular/router';
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -11,7 +13,14 @@ describe('DetailsSellerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DetailsSellerComponent ]
+      declarations: [ DetailsSellerComponent ],
+      // providers: [{
+      //   provide: RouterLink,
+      //   useValue: RouterLink
+      // }],
+      imports: [
+        FormsModule, RouterModule
+      ]
     })
     .compileComponents();
   }));

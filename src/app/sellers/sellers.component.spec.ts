@@ -1,13 +1,12 @@
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router, RouterLink, RouterModule } from '@angular/router';
 import { ListSellersComponent } from './list-sellers/list-sellers.component';
 import { JumboSellersComponent } from './jumbo-sellers/jumbo-sellers.component';
 import { Observable } from 'rxjs/Rx';
 import { SellersService } from '../sellers.service';
-/* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-
 import { SellersComponent } from './sellers.component';
 
 describe('SellersComponent', () => {
@@ -35,7 +34,8 @@ describe('SellersComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SellersComponent,
+      declarations: [
+        SellersComponent,
         JumboSellersComponent,
         ListSellersComponent
       ],
@@ -51,9 +51,15 @@ describe('SellersComponent', () => {
       }, {
         provide: Router,
         useValue: Router
-      },  {
+      }, {
         provide: ActivatedRoute,
         useValue: ActivatedRoute
+      }, {
+        provide: NgbModal,
+        useValue: NgbModal
+      }, {
+        provide: NgbActiveModal,
+        useValue: NgbActiveModal
       }]
     })
     .compileComponents();
