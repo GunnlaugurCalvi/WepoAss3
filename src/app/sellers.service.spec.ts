@@ -93,7 +93,9 @@ describe('SellersService', () => {
     backend.connections.subscribe((connection: MockConnection) => {
       let options = new ResponseOptions(mockHttp.mockSeller);
       connection.mockRespond(new Response(options));
+      expect(connection.request.method).toEqual(RequestMethod.Get);
     });
+
     service.getSellers().subscribe(resp => {
       expect(resp)
     });
@@ -105,7 +107,9 @@ describe('SellersService', () => {
       let options = new ResponseOptions({
         body: JSON.stringify({id: 1})
       });
+
       connection.mockRespond(new Response(options));
+      expect(connection.request.method).toEqual(RequestMethod.Get);
     });
     service.getSellerById(1).subscribe(resp => {
       expect(resp).toEqual({id: 1});
@@ -119,12 +123,72 @@ describe('SellersService', () => {
       let options = new ResponseOptions({
         body: JSON.stringify({id: 1})
       });
+
       connection.mockRespond(new Response(options));
+      expect(connection.request.method).toEqual(RequestMethod.Get);
     });
     service.getProducts(1).subscribe(resp => {
       expect(resp).toEqual({id: 1});
       done();
     })
+  });
 
-  })
+  it('should call updateProduct', async(() => {
+    backend.connections.subscribe((connection: MockConnection) => {
+      connection.mockRespond(new Response(new ResponseOptions({
+        body: { sellerid: 3,
+                productid: 2}
+      })));
+      expect(connection.request.method).toEqual(RequestMethod.Put);
+    });
+    service.updateProduct(3, 2).subscribe(resp => {
+      expect(resp).toBeDefined();
+      expect(resp.sellerid).toBe(3);
+      expect(resp.productid).toBe(2);
+      // done();
+    });
+  }));
+
+  it('should call addProduct', (done) => {
+    backend.connections.subscribe((connection: MockConnection) => {
+      connection.mockRespond(new Response(new ResponseOptions({
+        body: { sellerid: 1337,
+                productid: 42}
+      })));
+      expect(connection.request.method).toEqual(RequestMethod.Post);
+    });
+    service.addProduct(1337, 42).subscribe(resp => {
+      expect(resp).toBeDefined();
+      expect(resp.sellerid).toBe(1337);
+      expect(resp.productid).toBe(42);
+      done();
+    })
+  });
+
+  it('should call addSeller', (done) => {
+    backend.connections.subscribe((connection: MockConnection) => {
+      connection.mockRespond(new Response(new ResponseOptions({
+        body: { sellerid: 1337 }
+      })));
+      expect(connection.request.method).toEqual(RequestMethod.Post);
+    });
+    service.addSeller(1337).subscribe(resp => {
+      expect(resp).toBeDefined();
+      expect(resp.sellerid).toBe(1337);
+      done();
+    })
+  });
+
+  it('should call updateSeller', async(() => {
+    backend.connections.subscribe((connection: MockConnection) => {
+      connection.mockRespond(new Response(new ResponseOptions({
+        body: { sellerid: 3 }
+      })));
+      expect(connection.request.method).toEqual(RequestMethod.Put);
+    });
+    service.updateSeller(3).subscribe(resp => {
+      expect(resp).toBeDefined();
+      expect(resp.sellerid).toBe(3);
+    });
+  }));
 });
