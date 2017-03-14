@@ -25,24 +25,21 @@ export class SellersComponent implements OnInit {
     this.service.getSellers().subscribe( result => {
       this.sellers = result;
     }, err => {
+      this.toastr.error('Can\'t connect to server', 'Error!', {dismiss: 'auto'});
     });
   }
 
   onSellerAdded() {
     const modalInstance = this.modalService.open(SellerDialogComponent);
     modalInstance.result.then(success => {
-      console.log('Dialog was closed very nice!');
-      console.log(success);
       this.service.addSeller(success).subscribe( succ => {
-        console.log(succ);
         this.sellers.push(succ);
         this.toastr.success('New User has been added', 'Success!', {dismiss: 'auto'});
       }, error => {
-        this.toastr.error('Something went wrong!', 'Error!', {dismiss: 'auto'});
-        console.log(error);
+        this.toastr.error(error, 'Error!', {dismiss: 'auto'});
       });
     }).catch(failure => {
-      console.log('Dialog was closed not very nice!');
+      this.toastr.error(failure, 'Error!', {dismiss: 'auto'});
     });
   }
 

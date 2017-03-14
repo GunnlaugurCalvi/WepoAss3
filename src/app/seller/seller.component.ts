@@ -28,30 +28,26 @@ export class SellerComponent implements OnInit {
     this.service.getProducts(this.route.snapshot.params['id']).subscribe(result => {
       this.products = result;
     }, error => {
-      // TODO
+      this.toastr.error(error, 'Error!', {dismiss: 'auto'});
     });
     this.service.getSellerById(this.route.snapshot.params['id']).subscribe(result => {
       this.seller = result;
     }, error => {
-      // TODO
+      this.toastr.error(error, 'Error!', {dismiss: 'auto'});
     });
 
   }
   onProductAdded() {
     const modalInstance = this.modalService.open(ProductDialogComponent);
     modalInstance.result.then(success => {
-      console.log('Dialog was closed very nice!1');
-      console.log(success);
       this.service.addProduct(this.seller.id, success).subscribe( succ => {
-        console.log(succ);
         this.products.push(succ['product']);
         this.toastr.success('New product has been added', 'Success!', {dismiss: 'auto'});
       }, error => {
-        this.toastr.error('Oops something went wrong!', 'Error!', {dismiss: 'auto'});
-        console.log(error);
+        this.toastr.error(error, 'Error!', {dismiss: 'auto'});
       });
     }).catch(failure => {
-      console.log('Dialog was closed not very nice!1');
+      this.toastr.error(failure, 'Error!', {dismiss: 'auto'});
     });
   }
   onUpdateProduct(product) {
@@ -59,18 +55,15 @@ export class SellerComponent implements OnInit {
     const modalInstance = this.modalService.open(ProductDialogComponent);
     modalInstance.componentInstance.product = product;
     modalInstance.result.then(success => {
-      console.log('Dialog was closed very nice!2');
-      console.log(success);
       this.service.updateProduct(this.seller.id, success).subscribe( succ => {
         console.log(succ);
         this.products[this.products.indexOf(product)] = succ['product'];
         this.toastr.success(this.products + ' has been updated!', 'Success!', {dismiss: 'auto'});
       }, error => {
-        this.toastr.error('Woops something went wrong!', 'Error!', {dismiss: 'auto'});
-        console.log(error);
+        this.toastr.error(error, 'Error!', {dismiss: 'auto'});
       });
     }).catch(failure => {
-      console.log('Dialog was closed not very nice!2');
+      this.toastr.error(failure, 'Error!', {dismiss: 'auto'});
     });
   }
   onUpdateSeller(seller) {
@@ -78,19 +71,14 @@ export class SellerComponent implements OnInit {
     const modalInstance = this.modalService.open(SellerDialogComponent);
     modalInstance.componentInstance.seller = seller;
     modalInstance.result.then(success => {
-      console.log('Dialog was closed very nice!3');
-      console.log(success);
       this.service.updateSeller(success).subscribe( succ  => {
-        console.log('SUCCESS');
-        console.log(succ);
         this.seller = succ;
         this.toastr.success(' has been updated!', 'Success!', {dismiss: 'auto'});
       }, error => {
-        this.toastr.error('Woopsie Doopsie something went wrong!', 'Error!', {dismiss: 'auto'});
-        console.log(error);
+        this.toastr.error(error, 'Error!', {dismiss: 'auto'});
       });
     }).catch(failure => {
-      console.log('Dialog was closed not very nice!3');
+      this.toastr.error(failure, 'Error!', {dismiss: 'auto'});
     });
   }
 }

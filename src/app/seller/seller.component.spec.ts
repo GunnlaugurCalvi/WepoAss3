@@ -18,6 +18,35 @@ describe('SellerComponent', () => {
   let component: SellerComponent;
   let fixture: ComponentFixture<SellerComponent>;
 
+
+  const mockModal = {
+    pressedOk: true,
+    seller: {
+      id: 420,
+      name: 'Dýrabúð Dabs',
+      category: 'Háskólanemasala',
+      imagePath: 'https://www.dyraklam.is'
+    },
+    open: function() {
+      return {
+        result: {
+          then: function(fnSuccess) {
+            if (mockModal.pressedOk) {
+              fnSuccess(mockModal.seller);
+            } return {
+              catch: function(fnError) {
+                if (!mockModal.pressedOk) {
+                  fnError();
+                }
+              }
+            };
+          }
+        }
+      };
+    }
+  }
+
+
   const MockActivatedRoute = {
     snapshot: {
       params: {id: 1}
@@ -85,7 +114,7 @@ describe('SellerComponent', () => {
         useValue: MockActivatedRoute
       }, {
         provide: NgbModal,
-        useValue: NgbModal
+        useValue: mockModal
       }, {
         provide: NgbTab,
         useValue: NgbTab
@@ -130,7 +159,7 @@ describe('SellerComponent', () => {
     });
   });
 
-  it('give us error when looking for sellers', () => {
+  it('should give us error when looking for sellers', () => {
     mockService.successGetProducts = false;
     mockService.successGetSeller = false;
     mockService.getSellerById(1).subscribe( result => {
@@ -142,6 +171,14 @@ describe('SellerComponent', () => {
       expect(result).toBeUndefined();
     }, err => {
       expect(err).toBe('ERROR');
+    });
+  });
+
+  it('should give us modal', () => {
+    const mock = mockModal;
+    mock.pressedOk = false;
+    mock.open().result.then(res => {
+      expect(res).toBe(mock.seller);
     });
   });
 });
